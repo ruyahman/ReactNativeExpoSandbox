@@ -6,7 +6,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import { WebView } from 'react-native-webview';
 
 import { Header } from 'react-native-elements'
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export const App = () => {
@@ -17,7 +17,8 @@ export const App = () => {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <>
+      <SafeAreaView style={{ flex: 1 }}>
         <Header
           centerComponent={{
             text: 'WebView',
@@ -47,12 +48,29 @@ export const App = () => {
           backgroundColor="black"
           barStyle="light-content"
         />
+        <View style={{ flex: 1 }}>
         <WebView
           ref={ref => this.webView = ref}
           source={{ uri: 'https://www.google.com' }}
           renderLoading={() => this.loading()}
           startInLoadingState={true}
         />
+        <View style={styles.floatingButton}>
+          <Button title={"Native Button"}/>  
+        </View>
+        </View>
       </SafeAreaView>
+    </>
   );
 };
+
+const styles = StyleSheet.create({
+  floatingButton: {
+    flex: 1,
+    position: "absolute",
+    backgroundColor: "#0000FF",
+    top: "75%",
+    left: "60%",
+    opacity: 0.5,
+  }
+});
